@@ -13,7 +13,7 @@ import { useHistory } from "react-router-dom";
 const schema = yup.object().shape({
     title: yup.string().required("Fyll inn navnet ditt"),
     email: yup.string().required("Please enter an email address").email("Please enter a valid email address"),
-    content: yup.string().required("Please enter your message").min(10, "The message must be at least 10 characters"),
+    content: yup.string().required("Please enter your message").min(12, "The message must be at least 12 characters"),
 });
 
 
@@ -21,7 +21,7 @@ export default function Contact(){
     const [serverError, setServerError] = useState(null);
     const [submitting, setSubmitting] = useState(false);
 
-    const { register, handleSubmit, formState: { errors } } = useForm()({
+    const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(schema),
     });
 
@@ -38,20 +38,17 @@ export default function Contact(){
         <form onSubmit={handleSubmit(onSubmit)}>
 				{serverError && <FormError>{serverError}</FormError>}
             <fieldset disabled={submitting}>
-            <p>Vennligst send svaret ditt her innen 1 juni.</p>
+            <p>Send us a message</p>
                 <div>
-                    <p>Navn</p>
-                    <input {...register("title")} /> 
+                    <input placeholder="Name" {...register("title")}/>
                     {errors.title && <span>{errors.title.message}</span>}
                 </div>
                 <div>
-                    <p>Kommer du?</p>
-                    <input name="email" type="email" id="email" {...register("email")} />
+                    <input name="email" type="email" id="email" placeholder="Email" {...register("email")} />
                     {errors.email && <span>{errors.email.message}</span>}
                 </div>
                 <div>
-                    <p>Musikkønske til dansegulvet:</p>
-                    <textarea {...register("content")} />
+                    <textarea placeholder="Message" {...register("content")} />
                     {errors.content && <span>{errors.content.message}</span>}
                 </div>
                 <button>{submitting ? "Submitting..." : "Send"}</button>
