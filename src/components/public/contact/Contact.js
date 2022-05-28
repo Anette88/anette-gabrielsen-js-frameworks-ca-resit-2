@@ -9,10 +9,15 @@ import AuthContext from "../../../context/AuthContext";
 import { useContext } from "react";
 import { useHistory } from "react-router-dom";
 
+const options = ["General", "Accounts", "Staff"];
 
 const schema = yup.object().shape({
-    title: yup.string().required("Fyll inn navnet ditt"),
+    title: yup.string().required("Plese fill in your name"),
     email: yup.string().required("Please enter an email address").email("Please enter a valid email address"),
+    select: yup
+    .string()
+    .oneOf(options)
+    .required("Please select a subject"),
     content: yup.string().required("Please enter your message").min(12, "The message must be at least 12 characters"),
 });
 
@@ -26,19 +31,19 @@ export default function Contact(){
     });
 
     function onSubmit(data) {
-        console.log(data);
+        //console.log(data);
     }
 
     console.log(errors);
  
     return (
         <>
-        <Heading content="Contact us" />
         
         <form onSubmit={handleSubmit(onSubmit)}>
 				{serverError && <FormError>{serverError}</FormError>}
             <fieldset disabled={submitting}>
-            <p>Send us a message</p>
+            <Heading content="Contact us" />
+            <p className="formp">Send us a message</p>
                 <div>
                     <input placeholder="Name" {...register("title")}/>
                     {errors.title && <span>{errors.title.message}</span>}
@@ -46,6 +51,14 @@ export default function Contact(){
                 <div>
                     <input name="email" type="email" id="email" placeholder="Email" {...register("email")} />
                     {errors.email && <span>{errors.email.message}</span>}
+                </div>
+                <div>
+                    <select name="option" placeholder="Select a subject" {...register("options")}>
+                        <option value="">Select a subject</option>
+                        <option value={options[0]}>General</option>
+                        <option value={options[1]}>Accounts</option>
+                        <option value={options[2]}>Staff</option>
+                    </select>
                 </div>
                 <div>
                     <textarea placeholder="Message" {...register("content")} />
