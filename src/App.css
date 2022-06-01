@@ -45,7 +45,7 @@ textarea {
 	height: 200px;
 }
 
-button {
+.contactbutton {
 	font-family:'Open Sans', sans-serif;
 	font-size: 18px;
 	margin-top: 10px;
@@ -56,15 +56,20 @@ button {
 	border: none;
 }
 
+span {
+	color: red;
+}
+
 select {
 	font-family:'Open Sans', sans-serif;
 	font-size: 18px;
-	margin-top: 10px;
+	margin: 0 0 10px 0;
 	width: 100%;
 	padding: 15px;
 	position: relative;
   	display: inline-block;
 	border: none;
+	color: #6A6A6A;
 }
 
 .formp {
@@ -135,6 +140,15 @@ h3 {
 	color: #FFFFFF;
 }
 
+/* Navbar */
+.navlink {
+	float: right;
+	text-align: center;
+	
+}
+
+
+
 
 /* Home */
 
@@ -151,10 +165,98 @@ h3 {
 	font-family: 'Open Sans', sans-serif;
 	font-size: 18px;
   }
+  .loader {
+	width: 60px;
+	height: 60px;
+	border: 10px solid #E2E2E2; 
+	border-top: 10px solid #A93F55; 
+	border-radius: 50%;
+	animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+  }
 
   /* About */
 
- .tabs {
+ .Tabs {
 	font-family: 'Open Sans', sans-serif;
 	font-size: 19px;
+	margin: 0;
+	color: #A93F55;	
+}
+
+.Tabscontent {
+	background-color: #FFFFFF;
+	border: 1px solid white;
+	padding: 20px;
+	width: 85%;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 16px;
+	color: #6A6A6A;
+}
+
+/*Contact*/
+
+.label {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 18px;
+	color: green;
+	text-align: center;
+}
+
+
+@media only screen and (min-width: 768px) {
+	.navdropdown {
+		display: none;
+	}
+}
+
+
+@media only screen and (max-width: 767px) {
+
+body {
+	  width: 100%;
+	}
+/*
+.abouttabs {
+		display:flex;
+		
+	}
+.Tabs {
+	  display: flex;
+	  flex-direction: column;
+	  
+  }
+*/
+
+.schools {
+	width:90%;
+	text-align: center;
+}	
+
+.navlink {
+	display: none;
+}
+
+.navdropdown {
+	float: right;
+    margin: 10px 0 0 0;
+}
+.dropdown .btn {
+    background-color: #ECECEC;
+    color: #8B8B8B;
+  }
+  .menubutton {
+	font-family:'Open Sans', sans-serif;
+	font-size: 18px;
+	margin-top: 10px;
+	width: 100%;
+	background-color: #A93F55;
+	color: #FFFFFF;
+	height: 50px;
+	border: none;
+}
 }

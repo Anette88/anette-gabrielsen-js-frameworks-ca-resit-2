@@ -37,7 +37,7 @@ export default function HomePage() {
 		);
 
 		if (loading) {
-			return <div>Loading...</div>;
+			return <div class="loader"></div>;
 		}
 
 		if (error) {
@@ -57,7 +57,7 @@ export default function HomePage() {
 		<Heading content="Universities" />
 		<div className="search-container hidden-xs">
  					<form action="/action_page.php">
-    			  	<input type="text" className="form-control" placeholder="Search" name="search" onChange={getSearch}/>
+    			  	<input type="text" className="form-control" placeholder="Type to filter" name="search" onChange={getSearch}/>
   				</form>
 				</div>
 				<div>

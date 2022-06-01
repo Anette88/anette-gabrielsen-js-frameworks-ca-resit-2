@@ -9,10 +9,12 @@ import AuthContext from "../../../context/AuthContext";
 import { useContext } from "react";
 import { useHistory } from "react-router-dom";
 
+
 const options = ["General", "Accounts", "Staff"];
 
+
 const schema = yup.object().shape({
-    title: yup.string().required("Plese fill in your name"),
+    title: yup.string().required("Plese fill in your name").min(4, "Should be 4 characters or more"),
     email: yup.string().required("Please enter an email address").email("Please enter a valid email address"),
     select: yup
     .string()
@@ -25,20 +27,24 @@ const schema = yup.object().shape({
 export default function Contact(){
     const [serverError, setServerError] = useState(null);
     const [submitting, setSubmitting] = useState(false);
+    const [message, setMessage] = useState(null);
 
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(schema),
     });
 
+
+
     function onSubmit(data) {
-        //console.log(data);
+        console.log(data);
+        setMessage("Contact form successfully filled in!");
     }
 
     console.log(errors);
  
     return (
         <>
-        
+        {message && <label className="label">{message}</label>}
         <form onSubmit={handleSubmit(onSubmit)}>
 				{serverError && <FormError>{serverError}</FormError>}
             <fieldset disabled={submitting}>
@@ -53,18 +59,19 @@ export default function Contact(){
                     {errors.email && <span>{errors.email.message}</span>}
                 </div>
                 <div>
-                    <select name="option" placeholder="Select a subject" {...register("options")}>
-                        <option value="">Select a subject</option>
+                    <select name="option" placeholder="Select a subject"  {...register("select")}>
+                    <option value={""}>Choose an option</option>
                         <option value={options[0]}>General</option>
                         <option value={options[1]}>Accounts</option>
                         <option value={options[2]}>Staff</option>
                     </select>
+                    {errors.select && <span>{errors.select.message}</span>}
                 </div>
                 <div>
                     <textarea placeholder="Message" {...register("content")} />
                     {errors.content && <span>{errors.content.message}</span>}
                 </div>
-                <button>{submitting ? "Submitting..." : "Send"}</button>
+                <button className="contactbutton">{submitting ? "Submitting..." : "Send"}</button>
             </fieldset>
         </form>
         
