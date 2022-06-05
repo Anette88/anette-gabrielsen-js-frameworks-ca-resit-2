@@ -1,6 +1,5 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useParams, useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Heading from "../../layout/Heading";
 import {BASE_URL} from "../../../constants/api";
@@ -15,7 +14,7 @@ export default function HomePage() {
 		const [search, setSearch] = useState([""]);
 		 
 
-		let history = useHistory();
+		
 
 		useEffect(
 			function () {
@@ -37,7 +36,7 @@ export default function HomePage() {
 		);
 
 		if (loading) {
-			return <div class="loader"></div>;
+			return <div className="loader"></div>;
 		}
 
 		if (error) {

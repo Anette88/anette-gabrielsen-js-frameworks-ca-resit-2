@@ -36,7 +36,7 @@ export default function Contact(){
 
 
     function onSubmit(data) {
-        console.log(data);
+        //console.log(data);
         setMessage("Contact form successfully filled in!");
     }
 
@@ -60,7 +60,7 @@ export default function Contact(){
                 </div>
                 <div>
                     <select name="option" placeholder="Select a subject"  {...register("select")}>
-                    <option value={""}>Choose an option</option>
+                    <option value={""}>Select a subject</option>
                         <option value={options[0]}>General</option>
                         <option value={options[1]}>Accounts</option>
                         <option value={options[2]}>Staff</option>
